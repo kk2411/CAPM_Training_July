@@ -1,0 +1,76 @@
+### Read all services
+GET http://localhost:4004/odata/v4/CatalogService
+
+### Read service metadata
+GET http://localhost:4004/odata/v4/CatalogService/$metadata
+
+### Read employee information
+GET http://localhost:4004/odata/v4/CatalogService/EmployeeSet
+
+### Read top 5 employees
+GET http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$top=5
+
+### Read single employee information
+GET http://localhost:4004/odata/v4/CatalogService/EmployeeSet/02BD2137-0890-1EEA-A6C2-BB55C197C7FB
+
+### Read a single entity
+GET http://localhost:4004/odata/v4/CatalogService/PurchaseOrderSet/74867AD200E41EDBA5D8B0C98DC28052
+
+### Read main entity and associated entity together
+GET http://localhost:4004/odata/v4/CatalogService/PurchaseOrderSet/74867AD200E41EDBA5D8B0C98DC28052?$expand=Items
+
+### Create a record
+POST http://localhost:4004/odata/v4/CatalogService/EmployeeSet
+Content-Type: application/json
+
+{  
+    "Currency_code": "USD",
+    "ID": "02BD2037-0890-1CCA-A6C2-CC55C197C7FB",
+    "accountNumber": "88776611114",
+    "bankId": "121000989",
+    "bankName": "State Bank of India",
+    "email": "rajnath.khanna@itelo.info",
+    "language": "H",
+    "loginName": "RAJKHANNA",
+    "nameFirst": "Rajnath",
+    "nameInitials": null,
+    "nameLast": "Khanna",
+    "nameMiddle": "Dilip",
+    "phoneNumber": null,
+    "salaryAmount": "75620.00",
+    "sex": "M"
+}
+
+### Update employee salary
+PATCH http://localhost:4004/odata/v4/CatalogService/EmployeeSet/02BD2037-0890-1CCA-A6C2-CC55C197C7FB
+Content-Type: application/json
+
+{
+    "salaryAmount" : 130000,
+    "Currency_code" : "EUR"
+}
+
+
+###
+GET http://localhost:4004/odata/v4/my/UpdateReadEmp
+
+###
+PATCH http://localhost:4004/odata/v4/my/UpdateReadEmp/02BD2037-0890-1CCA-A6C2-CC55C197C7FB
+Content-Type: application/json
+
+{
+    "salaryAmount" : 100000,
+    "Currency_code" : "INR"
+}
+
+###
+GET http://localhost:4004/odata/v4/CatalogService/PurchaseOrderSet/74867AD200E41EDBA5D8B0C98DC3A052?$expand=Items
+
+###
+POST http://localhost:4004/odata/v4/CatalogService/PurchaseOrderSet('74867AD200E41EDBA5D8B0C98DC3A052')/CatalogService.discountOnPrice
+Content-Type: application/json
+
+{}
+
+###
+GET http://localhost:4004/odata/v4/CatalogService/PurchaseOrderSet('74867AD200E41EDBA5D8B0C98DC3A052')/CatalogService.biggestOrder()
